@@ -1253,6 +1253,7 @@
       const page = document.createElement('div');
       page.className = 'pdf-invoice-page';
       page.style.cssText = 'box-sizing:border-box;width:210mm;height:296mm;padding:6mm 8mm;display:flex;flex-direction:column;overflow:visible;background:#fff;color:#111827;';
+      if (classicGrid) page.style.border = '1px solid #555';
 
       const pageHeader = header.cloneNode(true);
       pageHeader.querySelectorAll('.no-print').forEach(element => element.remove());
@@ -1261,7 +1262,7 @@
 
       const table = document.createElement('table');
       table.className = 'invoice-body-print';
-      table.style.cssText = `box-sizing:border-box;width:100%;flex:${classicGrid ? '1 0 auto' : '0 0 auto'};table-layout:fixed;border-collapse:collapse;margin:${classicGrid ? '0' : '4px 0'};`;
+      table.style.cssText = `box-sizing:border-box;width:100%;flex:0 0 auto;table-layout:fixed;border-collapse:collapse;margin:${classicGrid ? '0' : '4px 0'};`;
       const thead = document.createElement('thead');
       thead.appendChild(columnHeader.cloneNode(true));
       const tbody = document.createElement('tbody');
@@ -1270,7 +1271,7 @@
 
       const pageFooter = footer.cloneNode(true);
       pageFooter.style.flex = '0 0 auto';
-      pageFooter.style.marginTop = classicGrid ? '0' : 'auto';
+      pageFooter.style.marginTop = 'auto';
       page.appendChild(pageFooter);
       host.appendChild(page);
       pages.push({ page, tbody });
